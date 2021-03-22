@@ -5,6 +5,10 @@ import java.io.Serializable;
 public class SimpleCalculatorImpl implements SimpleCalculator {
 
   // todo: add fields as needed
+  private double first_val = 0;
+  private double second_val = 0;
+  private String opernad = "";
+  private int state = 0;
 
   @Override
   public String output() {
@@ -45,6 +49,10 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
   @Override
   public void clear() {
     // todo: clear everything (same as no-input was never given)
+    this.first_val = 0;
+    this.second_val = 0;
+    this.opernad = "";
+    this.state = 0;
   }
 
   @Override
