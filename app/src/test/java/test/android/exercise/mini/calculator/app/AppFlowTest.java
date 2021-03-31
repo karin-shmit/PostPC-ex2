@@ -114,7 +114,7 @@ public class AppFlowTest {
   }
 
   @Test
-  public void flowTest5(){
+  public void AflowTest5(){
     // run clicks on "3<backspace>"
     for (View button: Arrays.asList(
             button3, buttonBackspace
@@ -122,7 +122,7 @@ public class AppFlowTest {
       button.performClick();
     }
 
-    assertEquals("", textViewOutput.getText().toString());
+    assertEquals("0", textViewOutput.getText().toString());
   }
 
   @Test
@@ -134,7 +134,7 @@ public class AppFlowTest {
       button.performClick();
     }
 
-    assertEquals("", textViewOutput.getText().toString());
+    assertEquals("0", textViewOutput.getText().toString());
   }
 
   @Test
