@@ -1,0 +1,12 @@
+"I pledge the highest level of ethical principles in support of academic excellence. 
+I ensure that all of my work reflects my own abilities and not those of someone else."
+
+hypothetical question-
+In order to add the multiplication feature we will need several things:
+1. implement the method in the calculator implementation
+2. add button of x as TextView in activity_main.xml and arange all the buttons so the x button will have space on the screen
+3. find the veiw in MainActivity.java and set OnClickListener
+4. add test to the multiplication in the SimpleCalculatorImpTest, see that the method works properly
+5. add test to the multiplication in the AppFlow, see that the button works properly
+6. add test to the multiplication in the MainActivityTest, see that the all the things works together properly
+
