@@ -9,6 +9,8 @@ import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.Serializable;
+
 public class MainActivity extends AppCompatActivity {
 
   @VisibleForTesting
@@ -23,12 +25,6 @@ public class MainActivity extends AppCompatActivity {
       calculator = new SimpleCalculatorImpl();
     }
 
-    /*
-    TODO:
-    - find all views
-    - initial update main text-view based on calculator's output
-    - set click listeners on all buttons to operate on the calculator and refresh main text-view
-     */
     TextView button0 = findViewById(R.id.button0);
     TextView button1 = findViewById(R.id.button1);
     TextView button2 = findViewById(R.id.button2);
@@ -43,82 +39,83 @@ public class MainActivity extends AppCompatActivity {
     TextView buttonMinus = findViewById(R.id.buttonMinus);
     TextView buttonEquals = findViewById(R.id.buttonEquals);
     TextView buttonClear = findViewById(R.id.buttonClear);
-    TextView calcOutput = findViewById(R.id.textViewCalculatorOutput);
+    TextView textViewCalculatorOutput = findViewById(R.id.textViewCalculatorOutput);
+    textViewCalculatorOutput.setText(calculator.output());
     View buttonBackspace = findViewById(R.id.buttonBackSpace);
 
     button0.setOnClickListener(v -> {
       calculator.insertDigit(0);
-      calcOutput.setText(calculator.output());
+      textViewCalculatorOutput.setText(calculator.output());
     });
 
     button1.setOnClickListener(v -> {
       calculator.insertDigit(1);
-      calcOutput.setText(calculator.output());
+      textViewCalculatorOutput.setText(calculator.output());
     });
 
     button2.setOnClickListener(v -> {
       calculator.insertDigit(2);
-      calcOutput.setText(calculator.output());
+      textViewCalculatorOutput.setText(calculator.output());
     });
 
     button3.setOnClickListener(v -> {
       calculator.insertDigit(3);
-      calcOutput.setText(calculator.output());
+      textViewCalculatorOutput.setText(calculator.output());
     });
 
     button4.setOnClickListener(v -> {
       calculator.insertDigit(4);
-      calcOutput.setText(calculator.output());
+      textViewCalculatorOutput.setText(calculator.output());
     });
 
     button5.setOnClickListener(v -> {
       calculator.insertDigit(5);
-      calcOutput.setText(calculator.output());
+      textViewCalculatorOutput.setText(calculator.output());
     });
 
     button6.setOnClickListener(v -> {
       calculator.insertDigit(6);
-      calcOutput.setText(calculator.output());
+      textViewCalculatorOutput.setText(calculator.output());
     });
 
     button7.setOnClickListener(v -> {
       calculator.insertDigit(7);
-      calcOutput.setText(calculator.output());
+      textViewCalculatorOutput.setText(calculator.output());
     });
 
     button8.setOnClickListener(v -> {
       calculator.insertDigit(8);
-      calcOutput.setText(calculator.output());
+      textViewCalculatorOutput.setText(calculator.output());
     });
 
     button9.setOnClickListener(v -> {
       calculator.insertDigit(9);
-      calcOutput.setText(calculator.output());
+      textViewCalculatorOutput.setText(calculator.output());
     });
 
     buttonPlus.setOnClickListener(v -> {
       calculator.insertPlus();
-      calcOutput.setText(calculator.output());
+      textViewCalculatorOutput.setText(calculator.output());
     });
 
     buttonMinus.setOnClickListener(v -> {
       calculator.insertMinus();
-      calcOutput.setText(calculator.output());
+      textViewCalculatorOutput.setText(calculator.output());
     });
 
     buttonEquals.setOnClickListener(v -> {
       calculator.insertEquals();
-      calcOutput.setText(calculator.output());
+      textViewCalculatorOutput.setText(calculator.output());
     });
 
     buttonClear.setOnClickListener(v -> {
       calculator.clear();
-      calcOutput.setText(calculator.output());
+      textViewCalculatorOutput.setText(calculator.output());
     });
 
     buttonBackspace.setOnClickListener(v -> {
       calculator.deleteLast();
-      calcOutput.setText(calculator.output());
+      textViewCalculatorOutput.setText(calculator.output());
     });
 
   }
@@ -127,11 +124,18 @@ public class MainActivity extends AppCompatActivity {
   protected void onSaveInstanceState(@NonNull Bundle outState) {
     super.onSaveInstanceState(outState);
     // todo: save calculator state into the bundle
+    Serializable state = calculator.saveState();
+    outState.putSerializable("state", state);
+
   }
 
   @Override
   protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
     super.onRestoreInstanceState(savedInstanceState);
     // todo: restore calculator state from the bundle, refresh main text-view from calculator's output
+    Serializable state = savedInstanceState.getSerializable("state");
+    calculator.loadState(state);
+    TextView calcOutput = findViewById(R.id.textViewCalculatorOutput);
+    calcOutput.setText(calculator.output());
   }
 }
