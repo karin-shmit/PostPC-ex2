@@ -5,7 +5,6 @@ import java.io.Serializable;
 
 public class SimpleCalculatorImpl implements SimpleCalculator {
 
-    // todo: add fields as needed
     private String res = "";
     private int state = 0;
 
@@ -55,8 +54,6 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
 
     @Override
     public void insertEquals() {
-        // todo: calculate the equation. after calling `insertEquals()`, the output should be the result
-        //  e.g. given input "14+3", calling `insertEquals()`, and calling `output()`, output should be "17"
         if (this.state == 2) {
             this.res = this.res.substring(0, this.res.length() - 1);
             this.state = 1;
@@ -81,11 +78,6 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
 
     @Override
     public void deleteLast() {
-        // todo: delete the last input (digit, plus or minus)
-        //  e.g.
-        //  if input was "12+3" and called `deleteLast()`, then delete the "3"
-        //  if input was "12+" and called `deleteLast()`, then delete the "+"
-        //  if no input was given, then there is nothing to do here
         if (this.state == 0) {
             return;
         }
@@ -100,7 +92,6 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
 
     @Override
     public void clear() {
-        // todo: clear everything (same as no-input was never given)
         this.res = "";
         this.state = 0;
     }
@@ -108,7 +99,6 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
     @Override
     public Serializable saveState() {
         CalculatorState state = new CalculatorState();
-        // todo: insert all data to the state, so in the future we can load from this state
         state.setParams(this.res, this.state);
         return state;
     }
@@ -124,9 +114,6 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
     }
 
     private static class CalculatorState implements Serializable {
-    /*
-    TODO: add fields to this class that will store the calculator state
-     */
         String mem_res;
         int mem_state;
 

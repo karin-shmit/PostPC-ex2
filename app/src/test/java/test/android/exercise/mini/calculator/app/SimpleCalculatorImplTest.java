@@ -323,6 +323,14 @@ public class SimpleCalculatorImplTest {
   }
 
   @Test
+  public void noInputAndBackspace(){
+    SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
+    // give some input to first calculator
+    calculatorUnderTest.deleteLast();
+    assertEquals("0", calculatorUnderTest.output());
+  }
+
+  @Test
   public void TwoCalculatorsWithLoadAndContinueCalculation(){
     SimpleCalculatorImpl firstCalculator = new SimpleCalculatorImpl();
     SimpleCalculatorImpl secondCalculator = new SimpleCalculatorImpl();
