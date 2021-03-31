@@ -29,6 +29,11 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
 
     @Override
     public void insertPlus() {
+        if (this.state == 0){
+            this.res = "0+";
+            this.state = 2;
+            return;
+        }
         if (this.state == 1) {
             this.res = this.res + "+";
             this.state = 2;
@@ -37,6 +42,11 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
 
     @Override
     public void insertMinus() {
+        if (this.state == 0){
+            this.res = "0-";
+            this.state = 2;
+            return;
+        }
         if (this.state == 1) {
             this.res = this.res + "-";
             this.state = 2;
@@ -50,6 +60,9 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
         if (this.state == 2) {
             this.res = this.res.substring(0, this.res.length() - 1);
             this.state = 1;
+        }
+        if(this.res.charAt(0) == '-'){
+            this.res="0"+this.res;
         }
         int i = 1;
         String[] elements = this.res.split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)");
@@ -80,6 +93,9 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
             this.state = 1;
         }
         this.res = this.res.substring(0, this.res.length() - 1);
+        if (this.res.equals("")){
+            this.state = 0;
+        }
     }
 
     @Override
